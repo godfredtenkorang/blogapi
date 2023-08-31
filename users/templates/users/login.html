@@ -1,0 +1,32 @@
+{% extends 'api/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row" style="overflow: hidden;">
+    <div class="col-md-12">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-outline-secondary">Login</button>
+                    <small class="text-muted">
+                        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                    </small>
+                    <div>
+                        <small class="text-muted">Have an Account? <a href="{% url 'register' %}">Sign Up</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
