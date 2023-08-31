@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.godey-api.xyz','174.138.76.121' 'localhost','127.0.0.1']
 
 
 # Application definition
@@ -90,10 +90,21 @@ WSGI_APPLICATION = 'allapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'godeyapidb',
+        'USER': 'godeyapi',
+        'PASSWORD': 'Gony@100',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
