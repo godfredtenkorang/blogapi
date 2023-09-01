@@ -29,9 +29,8 @@ class BlogCreatelView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user, self.request.FILES
         return super().form_valid(form)
 
-# def blog_detail(request, pk):
-#     blog = Blog.objects.get(id=pk)
-#     context = {
-#         'blog':blog
-#     }
-#     return render(request, 'api/detail.html', context)
+def api(request):
+    context = {
+        'title': 'API'
+    }
+    return render(request, 'api/api.html', context)
