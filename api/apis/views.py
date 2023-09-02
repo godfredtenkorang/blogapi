@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from api.models import Blog
 from django.contrib.auth.models import User
 from api.apis.serialzers import BlogSerializer
@@ -10,6 +10,7 @@ from api.apis.serialzers import BlogSerializer
 class BlogView(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 # @api_view(['GET', ])
