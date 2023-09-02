@@ -14,7 +14,7 @@ def api_blog_view(request):
     return Response(serializer.data)
 
 @api_view(['GET', ])
-@permission_classes((IsAuthenticated,))
+# @permission_classes((IsAuthenticated,))
 def api_detail_blog_view(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
@@ -26,16 +26,16 @@ def api_detail_blog_view(request, pk):
         return Response(serializer.data)
     
 @api_view(['PUT', ])
-@permission_classes((IsAuthenticated,))
+# @permission_classes((IsAuthenticated,))
 def api_update_blog_view(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    user = request.user
-    if blog.author != user:
-        return Response({'response': "You don't have permission to edit that"})
+    # user = request.user
+    # if blog.author != user:
+    #     return Response({'response': "You don't have permission to edit that"})
     
     if request.method == 'PUT':
         serializer = BlogSerializer(blog, data=request.data)
@@ -48,16 +48,16 @@ def api_update_blog_view(request, pk):
             
 
 @api_view(['DELETE', ])
-@permission_classes((IsAuthenticated,))
+# @permission_classes((IsAuthenticated,))
 def api_delete_blog_view(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    user = request.user
-    if blog.author != user:
-        return Response({'response': "You don't have permission to delete that"})
+    # user = request.user
+    # if blog.author != user:
+    #     return Response({'response': "You don't have permission to delete that"})
     
 
     if request.method == 'DELETE':
@@ -71,7 +71,7 @@ def api_delete_blog_view(request, pk):
 
 
 @api_view(['POST', ])
-@permission_classes((IsAuthenticated,))
+# @permission_classes((IsAuthenticated,))
 def api_create_blog_view(request):
     
     user = request.user
