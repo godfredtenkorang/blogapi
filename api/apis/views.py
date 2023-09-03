@@ -8,7 +8,6 @@ from api.apis.serialzers import BlogSerializer
 
 
 @api_view(['GET', ])
-@permission_classes((IsAuthenticated,))
 def api_blog_view(request):
     blogs = Blog.objects.all()
     serializer = BlogSerializer(blogs, many=True)
