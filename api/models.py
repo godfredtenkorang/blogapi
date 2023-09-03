@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Blog(models.Model):
@@ -15,3 +18,8 @@ class Blog(models.Model):
     
     def get_absolute_url(self):
         return reverse('blog-detail', kwargs={'pk': self.pk})
+    
+    def get_image(self):
+        if self.image:
+            return 'https://godey-api.xyz/' + self.image.url
+        return ''
