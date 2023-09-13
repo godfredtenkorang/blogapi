@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from api.models import Blog
 from django.contrib.auth.models import User
 from api.apis.serialzers import BlogSerializer
@@ -26,7 +26,7 @@ def api_detail_blog_view(request, pk):
         return Response(serializer.data)
     
 @api_view(['PUT', ])
-@permission_classes((IsAuthenticated,))
+@permission_classes((AllowAny,))
 def api_update_blog_view(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
