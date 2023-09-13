@@ -33,9 +33,9 @@ def api_update_blog_view(request, pk):
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    user = request.user
-    if blog.author != user:
-        return Response({'response': "You don't have permission to edit that"})
+    # user = request.user
+    # if blog.author != user:
+    #     return Response({'response': "You don't have permission to edit that"})
     
     if request.method == 'PUT':
         serializer = BlogSerializer(blog, data=request.data)
