@@ -48,16 +48,16 @@ def api_update_blog_view(request, pk):
             
 
 @api_view(['DELETE', ])
-@permission_classes((IsAuthenticated,))
+@permission_classes((AllowAny,))
 def api_delete_blog_view(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    user = request.user
-    if blog.author != user:
-        return Response({'response': "You don't have permission to delete that"})
+    # user = request.user
+    # if blog.author != user:
+    #     return Response({'response': "You don't have permission to delete that"})
     
 
     if request.method == 'DELETE':
